@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="prism.css">
+    <title>Post Master Website</title>
+</head>
+<style>
+    #responsePre {
+        max-height: 500px;
+
+    }
+
+    @media screen and (max-width: 360px) {
+        body {
+            background-color: rgba(191, 197, 188, 0.856);
+        }
+
+        .newOne {
+            display: block;
+            margin: auto;
+        }
+
+        #responsePre {
+            max-height: 500px;
+
+        }
+    }
+</style>
+
+<body>
+    <!-- ******************************OUR NAVBAR PORTION*********************************** -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Post Master</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ******************************OUR Content PORTION*********************************** -->
+    <div class="container my-4">
+        <!-- FOR URL -->
+        <div class="mb-3 row">
+            <label for="url" class="col-sm-2 col-form-label"><b>URL</b></label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="url" placeholder="Enter Url here...!"
+                    style="font-style:italic">
+            </div>
+        </div>
+
+        <!-- FOR GET OR POST REQUEST TYPE-->
+        <fieldset class="row mb-3">
+            <legend class="col-form-label col-sm-2 pt-0"><b>Request Type</b></legend>
+            <div class="col-sm-10">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="requestType" id="getRequest" value="GET" checked>
+                    <label class="form-check-label" for="GET">
+                        <b><var>GET</var></b>
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="requestType" id="postRequest" value="POST">
+                    <label class="form-check-label" for="POST">
+                        <b><var>POST</var></b>
+                    </label>
+                </div>
+
+            </div>
+        </fieldset>
+
+        <!-- FOR JSON OR Parameter Content TYPE-->
+        <fieldset class="row mb-3">
+            <legend class="col-form-label col-sm-2 pt-0"><b>Content Type</b></legend>
+            <div class="col-sm-10">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="contentType" id="jsonFormat" value="json"
+                        checked>
+                    <label class="form-check-label" for="json">
+                        <b><var>JSON</var></b>
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="contentType" id="parameterFormat" value="param">
+                    <label class="form-check-label" for="param">
+                        <b><var>Parameters</var> </b>
+                    </label>
+                </div>
+            </div>
+        </fieldset>
+
+        <!-- IF USER CHECKED JSON THEN SHOW TEXT BOX -->
+        <div id="wholeBoxJson">
+            <div class="mb-3 row">
+                <label for="Json" class="col-sm-2 col-form-label"><b><var> Request For JSON</var></b></label>
+                <div class="col-sm-10">
+                    <textarea class="form-control" id="jsonBoxRequest" rows="3" placeholder="Enter Json here...!"
+                        style="font-style:italic"></textarea>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- IF USER CHECKED PARAMETERS THEN SHOW TWO INPUTS BOX -->
+        <div id="parameterBox">
+            <div class="row">
+                <label for="Parameters" class="col-sm-2 col-form-label"> <b><var>Parameter 1</var></b></label>
+                <div class="col-md-4">
+                    <input type="text" class="form-control" id="paramKey1" placeholder="Enter Key 1 here"
+                        style="font-style:italic">
+                    <br>
+                </div>
+                <div class="col-md-4">
+                    <input type="text" class="form-control" id="paramValue1" placeholder="Enter Value 1 here"
+                        style="font-style:italic">
+                    <br>
+                </div>
+
+                <div class="col-md-1">
+                    <button type="submit" class="btn btn-primary form-control" id="addRequestValue"> + </button>
+                </div>
+            </div>
+            <div id="newBox"></div>
+        </div>
+
+
+        <!-- One Button to submit response -->
+        <br>
+        <br>
+        <button type="button" class="btn btn-primary" id="submitBtnRequest"><b>Submit</b></button>
+        <br>
+        <hr>
+
+        <!-- Final Result After Fetching url request: -->
+
+
+        <!-- <div id="responseBox"> -->
+        <div class="mb-3 row">
+            <label for="response" class="col-sm-2 col-form-label"><b>Response</b></label>
+            <div class="col-sm-10">
+                <pre id='responsePre' class="language-javascript">
+                        <code class="language-javascript" id="finalResult"></code>
+                    </pre>
+            </div>
+        </div>
+        <!-- </div> -->
+        <hr>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script src="index.js"></script>
+    <script src="prism.js"></script>
+
+</body>
+
+</html>
